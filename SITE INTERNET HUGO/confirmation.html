@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)file:///D:/download/confirmation.html -->
+<html lang="fr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HUGX-VISUAL — Commande confirmée</title>
+<link href="./HUGX-VISUAL — Commande confirmée_files/css2" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #00ff6a;
+    --green-dim: #00cc55;
+    --dark: #080c08;
+    --dark2: #0e140e;
+    --dark3: #141e14;
+    --white: #f0f5f0;
+    --muted: #6b7d6b;
+    --accent: #ff3c5f;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,255,106,0.08);
+    background: rgba(8,12,8,0.85);
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.6rem 1.4rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--green-dim); transform: scale(0.98); }
+
+  /* MAIN */
+  main {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 2.5rem 4rem;
+    position: relative;
+  }
+
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 50% 60% at 50% 40%, rgba(0,255,106,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .confirm-box {
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .check-icon {
+    width: 80px;
+    height: 80px;
+    border: 2px solid var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 2.5rem;
+    position: relative;
+  }
+
+  .check-icon::after {
+    content: '✓';
+    font-size: 2.2rem;
+    color: var(--green);
+    line-height: 1;
+  }
+
+  .check-icon .pulse {
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,255,106,0.25);
+    animation: pulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.15); opacity: 0; }
+  }
+
+  .confirm-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+  }
+
+  .confirm-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.8rem;
+  }
+
+  .confirm-title span { color: var(--green); }
+
+  .confirm-text {
+    font-size: 1rem;
+    color: var(--muted);
+    max-width: 440px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.8;
+  }
+
+  .confirm-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .steps-mini {
+    display: flex;
+    gap: 0;
+    justify-content: center;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(0,255,106,0.12);
+    background: var(--dark2);
+  }
+
+  .step-mini {
+    flex: 1;
+    padding: 1.4rem 1rem;
+    border-right: 1px solid rgba(0,255,106,0.08);
+    text-align: center;
+  }
+  .step-mini:last-child { border-right: none; }
+
+  .step-mini-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: rgba(0,255,106,0.2);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-mini-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+
+  .step-mini.active .step-mini-num { color: var(--green); }
+  .step-mini.active .step-mini-label { color: var(--white); }
+
+  .confirm-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--dark);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-dim); transform: translateY(-2px); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--white);
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 1rem 2.2rem;
+    border: 1px solid rgba(240,245,240,0.2);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(0,255,106,0.08);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--dark2);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--green);
+    letter-spacing: 0.08em;
+  }
+
+  .footer-copy { font-size: 0.78rem; color: var(--muted); }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--green); }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem 1.2rem; }
+    main { padding: 7rem 1.2rem 3rem; }
+    .steps-mini { flex-direction: column; }
+    .step-mini { border-right: none; border-bottom: 1px solid rgba(0,255,106,0.08); }
+    .step-mini:last-child { border-bottom: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="file:///D:/download/index.html" class="nav-logo">HUGX VISUAL</a>
+  <div style="display:flex;align-items:center;gap:1.5rem;">
+    <a href="file:///D:/download/index.html#creations" style="font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;var(--green)&#39;" onmouseout="this.style.color=&#39;var(--muted)&#39;">Créations</a>
+    <a href="file:///D:/download/devis.html" class="nav-cta">Demander un devis</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+  <div class="bg-glow"></div>
+  <div class="confirm-box">
+
+    <div class="check-icon">
+      <div class="pulse"></div>
+    </div>
+
+    <div class="confirm-label">Commande reçue</div>
+    <h1 class="confirm-title">Merci,<br><span>c'est parti !</span></h1>
+
+    <p class="confirm-text">
+      Ta demande a bien été reçue. Je te contacterai à ton adresse courriel dans les <strong>24 heures</strong> pour confirmer les détails et démarrer ton projet.
+    </p>
+
+    <div class="steps-mini">
+      <div class="step-mini active">
+        <div class="step-mini-num">01</div>
+        <div class="step-mini-label">Demande envoyée</div>
+      </div>
+      <div class="step-mini">
+        <div class="step-mini-num">02</div>
+        <div class="step-mini-label">Confirmation 24h</div>
+      </div>
+      <div class="step-mini">
+        <div class="step-mini-num">03</div>
+        <div class="step-mini-label">Design en cours</div>
+      </div>
+      <div class="step-mini">
+        <div class="step-mini-num">04</div>
+        <div class="step-mini-label">Livraison</div>
+      </div>
+    </div>
+
+    <div class="confirm-actions">
+      <a href="file:///D:/download/index.html" class="btn-primary">Retour à l'accueil</a>
+      <a href="file:///D:/download/index.html#creations" class="btn-ghost">Voir mes créations</a>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">HUGX-VISUAL</div>
+  <div class="footer-copy">© 2026 HUGX-VISUAL · Trois-Rivières, Québec</div>
+  <div class="footer-links">
+    <a href="file:///D:/download/index.html#services">Services</a>
+    <a href="file:///D:/download/index.html#creations">Créations</a>
+    <a href="file:///D:/download/index.html#tarifs">Tarifs</a>
+    <a href="file:///D:/download/index.html#contact">Contact</a>
+  </div>
+</footer>
+
+
+
+</body></html>
